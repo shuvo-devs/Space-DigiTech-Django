@@ -1,0 +1,233 @@
+{% load static %}
+<!-- footer header start -->
+<section class="footer-head">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="f-h-bg" data-aos="fade-up" data-aos-duration="1500">
+          <div class="row">
+            <div class="col-md-8 col-sm-8 f-h-left">
+              <h3 class="f-h-heading">
+                Looking for the Best IT Business Solutions?
+              </h3>
+              <p class="f-h-text">
+                As a app web crawler expert, We will help to organize.
+              </p>
+            </div>
+            <div class="col-md-4 col-sm-4 f-h-right">
+              <a class="btn" href="{% url 'contact' %}"><span>get a quote</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- footer header end -->
+
+<!-- footer part start -->
+
+<section class="footer">
+  <div class="footer bg"></div>
+  <div class="container">
+    <!-- widget -->
+    <div class="f-widget-box">
+      <div class="row">
+        <!-- big col -->
+        <div class="col-md-6 col-lg-6 col-sm-6 f-big-col">
+          <div class="row">
+            <!-- footer col -->
+            <div class="col-md-6 f-col">
+              <div class="f-w-col f-logo-w">
+                <div class="f-logo">
+                  <a href="#"
+                    ><img {% if website_details.logo_white %}src="{{website_details.logo_white.url}}"{% endif %} alt="{{website_details.logo_white_alt_text}}"
+                  /></a>
+                </div>
+                <div class="f-text">
+                  {{website_details.site_description|safe}}
+                </div>
+                <div class="f-w-social-box">
+                  <ul class="f-w-social">
+                    {% if website_details.facebook %}
+                    <li class="f-w-s-li">
+                      <a href="{{website_details.facebook}}"><i class="fa-brands fa-facebook-f"></i></a>
+                    </li>
+                    {% endif %}
+                    {% if website_details.twitter %}
+                    <li class="f-w-s-li">
+                      <a href="{{website_details.twitter}}"><i class="fa-brands fa-twitter"></i></a>
+                    </li>
+                    {% endif %}
+                    {% if website_details.instagram %}
+                    <li class="f-w-s-li">
+                      <a href="{{website_details.instagram}}"><i class="fa-brands fa-instagram"></i></a>
+                    </li>
+                    {% endif %}
+                    {% if website_details.youtube %}
+                    <li class="f-w-s-li">
+                      <a href="{{website_details.youtube}}"><i class="fa-brands fa-youtube"></i></a>
+                    </li>
+                    {% endif %}
+                    {% if website_details.pinterest %}
+                    <li class="f-w-s-li">
+                      <a href="{{website_details.pinterest}}"><i class="fa-brands fa-pinterest"></i></a>
+                    </li>
+                    {% endif %}
+                    {% if website_details.linkedin %}
+                    <li class="f-w-s-li">
+                      <a href="{{website_details.linkedin}}"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </li>
+                    {% endif %}
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- footer col -->
+            <div class="col-md-6 f-col">
+              <div class="line-drop"></div>
+              <div class="f-w-col f-services-w">
+                <h4>Quick Link</h4>
+                <div class="f-s-w-box">
+                  <ul class="f-w-ul">
+                    {% for service in services %}
+                    <li class="f-w-li">
+                      <a href="{% url 'service_details' service.slug %}"
+                        ><i class="fa-regular fa-circle-dot"></i>{{service.service_name}}</a
+                      >
+                    </li>
+                    {% endfor %}
+                    {% for service in services %}
+                    {% if service.sub_menu == True %}
+                      {% for sub_service in sub_services %}
+                        <li class="f-w-li">
+                          <a href="{% url 'service_details' service.slug sub_service.slug %}"
+                            ><i class="fa-regular fa-circle-dot"></i>{{sub_service.service_name}}</a
+                          >
+                        </li>
+                      {% endfor %}
+                    {% endif %}
+                    {% endfor %}
+                    {% for service in services %}
+                    {% if service.sub_menu == True %}
+                      {% for sub_service in sub_services %}
+                      {% if sub_service.sub_menu == True %}
+                        {% for sub_sub_service in sub_sub_services %}
+                          <li class="f-w-li">
+                            <a href="{% url 'service_details' service.slug sub_service.slug sub_sub_service.slug %}"
+                              ><i class="fa-regular fa-circle-dot"></i>{{sub_sub_service.service_name}}</a
+                            >
+                          </li>
+                        {% endfor %}
+                      {% endif %}
+                      {% endfor %}
+                    {% endif %}
+                    {% endfor %}
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- footer col -->
+          </div>
+        </div>
+        <!-- big col -->
+        <div class="col-md-6 col-lg-6 col-sm-6 f-big-col">
+          <div class="row">
+            <!-- footer col -->
+            <div class="col-md-6 f-col">
+              <div class="line-drop"></div>
+              <div class="f-w-col f-w-cont">
+                <h4>Get In Touch</h4>
+                <div class="f-w-cont-list">
+                  <ul class="f-w-c-list-ul">
+                    <li class="f-w-c-list-li">
+                      <a href="tel:{{website_details.phone_1}}"
+                        ><i class="fa-solid fa-phone"></i>{{website_details.phone_1}}</a
+                      >
+                    </li>
+                    {% if website_details.phone_2 %}
+                     <li class="f-w-c-list-li">
+                      <a href="tel:{{website_details.phone_2}}"
+                        ><i class="fa-solid fa-phone"></i>{{website_details.phone_2}}</a
+                      >
+                    </li>
+                    {% endif %}
+                    <li class="f-w-c-list-li">
+                      <a href="mail:{{website_details.email_1}}"
+                        ><i class="fa-solid fa-envelope"></i
+                        >{{website_details.email_1}}</a
+                      >
+                    </li>
+                    {% if website_details.email_2 %}
+                    <li class="f-w-c-list-li">
+                      <a href="mail:{{website_details.email_2}}"
+                        ><i class="fa-solid fa-envelope"></i
+                        >{{website_details.email_2}}</a
+                      >
+                    </li>
+                    {% endif %}
+                    <li class="f-w-c-list-li">
+                      <i class="fa-solid fa-location-dot"></i>{{website_details.address}}
+                    </li>
+                  </ul>
+                </div>
+                <h4>Newsletter</h4>
+                <div class="f-w-newsletter">
+                  <div class="f-w-newsletter-text">
+                    Subscribe our newsletter to get our latest update & news
+                  </div>
+                  <div class="form-group">
+                    <form method="post" action="contact.html">
+                      <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        placeholder="Your Email Address"
+                        required
+                      />
+                      <button type="submit" class="btn">
+                        <i class="fa-solid fa-paper-plane"></i>
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- footer col -->
+            <div class="col-md-6 f-col">
+              <div class="line-drop"></div>
+              <div class="f-w-col f-w-map">
+                <h4>Our Location</h4>
+                <div class="footer-map">
+                  <iframe
+                    src="{{website_details.google_map_location}}"
+                    style="border: 0"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+            <!-- footer col -->
+          </div>
+        </div>
+
+        <!-- big col -->
+      </div>
+    </div>
+    <!-- widget -->
+    <div class="footer-bottom">
+      <div class="row">
+        <div class="col-md-12 col-lg-12 col-sm-12">
+          <div class="copy-right-sect">
+            <p>{% now "Y" %} © All rights reserved by</p>
+            <a href="{% url 'index' %}">Spece Digitech</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- footer part end -->

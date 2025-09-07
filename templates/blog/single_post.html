@@ -1,0 +1,238 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{post.title}}{% endblock title %}
+{% block content %}
+<!--  blogging body page-->
+<!--  blogging body page-->
+<!--  blogging body page-->
+<section id="featured-post">
+  <div
+    id="carouselExampleCaptions"
+    class="carousel slide"
+    data-bs-ride="carousel"
+    data-bs-interval="3000"
+  >
+    <div class="carousel-inner">
+      {% for post in featured_posts %}
+        <div class="carousel-item {% if forloop.first %} active {% endif %}">
+          <img src="{{post.thumbnail.url}}" class="d-block w-100" alt="{{post.thumbnail_alt_text}}" />
+          <div
+            class="mask"
+            style="background-color: rgba(0, 0, 0, 0.5)"
+          ></div>
+          <div class="carousel-caption">
+            <h1>
+              {{post.title}}
+            </h1>
+            <div class="d-flex justify-content-center my-3">
+              <span>{{post.published_date|date}}</span>
+              <span class="mx-2">&#9679;</span>
+              <a class="link-light" href="{% url 'category' category_slug=post.category.slug %}">{{post.category}}</a>
+            </div>
+            <div class="d-none d-md-block">
+              {{post.post|slice:"150"|safe}}
+            </div>
+            <a
+              class="btn btn-outline-light mt-2"
+              href="{% url 'post_details' category_slug=post.category.slug post_slug=post.slug %}"
+              style="border-radius: 0"
+              >Read More</a
+            >
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#carouselExampleCaptions"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#carouselExampleCaptions"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</section>
+<!--  blogging body page-->
+<!--  blogging body page-->
+<!--  blogging body page-->
+
+<!--blog body features  -->
+<section class="blogBodyFeatures">
+  <div class="container">
+    <div class="row">
+      <!-- left part -->
+      <div class="col-lg-8">
+        <div class="leftBlogBodyFeatureMain">
+          <!-- block -->
+          <div class="AllBlogFeaturesMain" style="padding-top: 0">
+            <h1
+              class="articleTitle fs-2"
+              style="margin-top: 20px; margin-bottom: 0"
+            >
+              {{post.title}}
+            </h1>
+            <div
+              class="d-flex my-3 align-items-center text-secondary fw-bold"
+              style="font-size: 14px"
+            >
+              <span>{{post.author_name}}</span>
+              <span class="mx-2">&#9679;</span>
+              <span>{{post.published_date|date}}</span>
+              <span class="mx-2">&#9679;</span>
+              <a href="{% url 'category' category_slug=post.category.slug %}" style="font-size: 14px">{{post.category}}</a>
+            </div>
+            <div class="AllBlogFeaturesMainImg">
+              <img class="border" src="{{post.thumbnail.url}}" alt="{{post.thumbnail_alt_text}}" />
+            </div>
+            <article
+              style="text-align: left; margin-top: 24px; line-height: 30px"
+            >
+              {{post.post|safe}}
+            </article>
+          </div>
+          <!-- block -->
+        </div>
+        <!-- comments section -->
+        <div class="comments-section">
+          <!-- comment form -->
+          <div class="inner-column">
+            <h4 class="fw-bold mb-5 text-uppercase">Leave a Comment</h4>
+            <div class="form-container">
+              <form action="{% url 'post_details' category_slug=post.category.slug post_slug=post.slug %}" method="POST">
+                {% csrf_token %}
+                <div class="row">
+                  <div class="col-lg-6 form-group">
+                    <label for="name">First name (required)</label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="first_name"
+                      placeholder="First name"
+                      required
+                    />
+                    <span class="errors"></span><br />
+                  </div>
+                  <div class="col-lg-6 form-group">
+                    <label for="name">Last name (required)</label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="last_name"
+                      placeholder="Last name"
+                      required
+                    />
+                    <span class="errors"></span><br />
+                  </div>
+                  <div class="col-12 form-group">
+                    <label for="email">Email (required)</label>
+                    <input
+                      type="email"
+                      placeholder="Email address"
+                      id="email"
+                      name="email"
+                      required
+                    />
+                    <span class="errors"></span><br />
+                  </div>
+                  <div class="col-lg-12 form-group">
+                    <label for="comment">Comment (required)</label>
+                    <textarea
+                      placeholder="Your comment"
+                      name="comment"
+                      id="comment"
+                      required
+                    ></textarea>
+                    <span class="errors"></span><br />
+                  </div>
+
+                  <div class="col-lg-6 form-group">
+                    <input class="btn" type="submit" value="Comment" />
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <!-- comment form end -->
+          <!-- comments -->
+          <div class="inner-column mt-5">
+            <h4 class="fw-bold mb-5 text-uppercase">Comments</h4>
+            <ul>
+              {% if comments %}
+                {% for comment in comments %}
+                  <li class="py-4 px-3 bg-light mb-3">
+                    <h5 class="fw-bold">{{comment.first_name}} {{comment.last_name}}</h5>
+                    <span>{{comment.comment}}</span>
+                  </li>
+                {% endfor %}
+              {% else %}
+                  <span>No Comments</span>
+              {% endif %}
+            </ul>
+          </div>
+          <!-- comments end -->
+        </div>
+        <!-- comments section end -->
+      </div>
+      <!-- left part -->
+      <!-- right part -->
+      <div class="col-lg-4">
+        <div class="rightBlogBodyFeatureMain">
+          <div class="latestPostMain">
+            <div class="latestPostTitle">Latest Posts</div>
+            <!-- list -->
+            {% for post in latest_posts %}
+              {% if forloop.counter <= 3 %}
+                <div class="latestPostList">
+                  <div class="postImg">
+                    <img class="border" src="{{post.thumbnail.url}}" alt="{{post.thumbnail_alt_text}}" />
+                  </div>
+                  <div class="postInfo">
+                    <div class="postTile">
+                      <a href="{% url 'post_details' category_slug=post.category.slug post_slug=post.slug %}"
+                        >{{post.title}}</a
+                      >
+
+                      <div class="d-flex align-items-center">
+                        <span
+                          class="text-secondary fw-bold mt-1"
+                          style="font-size: 12px"
+                          >{{post.published_date|date}}</span
+                        >
+                        <span
+                          class="mx-2 text-secondary"
+                          style="font-size: 12px"
+                          >&#9679;</span
+                        >
+                        <a href="{% url 'category' category_slug=post.category.slug %}" style="font-size: 12px; font-weight: bold"
+                          >{{post.category}}</a
+                        >
+                      </div>
+                    </div>
+                    <div class="postContent">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Architecto, facere?...
+                    </div>
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+            <!-- list -->
+          </div>
+        </div>
+      </div>
+      <!-- right part -->
+    </div>
+  </div>
+</section>
+<!--blog body features  -->
+{% endblock content %}

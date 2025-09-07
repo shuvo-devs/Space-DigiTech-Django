@@ -1,0 +1,220 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{category.name}}{% endblock title %}
+{% block content %}
+<!--  blogging body page-->
+<!--  blogging body page-->
+<!--  blogging body page-->
+<section id="featured-post">
+  <div
+    id="carouselExampleCaptions"
+    class="carousel slide"
+    data-bs-ride="carousel"
+    data-bs-interval="3000"
+  >
+    <div class="carousel-inner">
+      {% for post in featured_posts %}
+        <div class="carousel-item {% if forloop.first %} active {% endif %}">
+          <img src="{{post.thumbnail.url}}" class="d-block w-100" alt="{{post.thumbnail_alt_text}}" />
+          <div
+            class="mask"
+            style="background-color: rgba(0, 0, 0, 0.5)"
+          ></div>
+          <div class="carousel-caption">
+            <h1>
+              {{post.title}}
+            </h1>
+            <div class="d-flex justify-content-center my-3">
+              <span>{{post.published_date|date}}</span>
+              <span class="mx-2">&#9679;</span>
+              <a class="link-light" href="{% url 'category' category_slug=post.category.slug %}">{{post.category}}</a>
+            </div>
+            <div class="d-none d-md-block">
+              {{post.post|slice:"150"|safe}}
+            </div>
+            <a
+              class="btn btn-outline-light mt-2"
+              href="{% url 'post_details' category_slug=post.category.slug post_slug=post.slug %}"
+              style="border-radius: 0"
+              >Read More</a
+            >
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#carouselExampleCaptions"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#carouselExampleCaptions"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</section>
+<!--  blogging body page-->
+<!--  blogging body page-->
+<!--  blogging body page-->
+<!-- blog feature -->
+<section class="blogFeatureOne">
+  <div class="container">
+    <div class="row">
+      {% for category in categories %}
+        {% if category.featured_category == True %}
+          <div class="col-md-3">
+            <div class="blogFeatureOneMain">
+              <div class="blogFeatureOnebox">
+                <div class="blogFeatureImg">
+                  <img src="{% static "images/gradient.png" %}"/>
+                </div>
+                <a href="{% url 'category' category_slug=category.slug %}" class="blogPagesBtn">{{category.name}}</a>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<!-- blog feature -->
+
+<!--blog body features  -->
+<section class="blogBodyFeatures">
+  <div class="container">
+    <div class="row">
+      <!-- left part -->
+      <div class="col-lg-8">
+        <div class="leftBlogBodyFeatureMain">
+          <h4 class="AllBlogFeaturesHead">//{{category.name}}</h4>
+          <!-- block -->
+          {% for post in category_posts %}
+            <div class="AllBlogFeaturesMain">
+              <div class="AllBlogFeaturesMainImg">
+                <img class="border" src="{{post.thumbnail.url}}" alt="{{post.thumbnail_alt_text}}" />
+              </div>
+              <h1
+                class="articleTitle fs-2"
+                style="margin-top: 20px; margin-bottom: 0"
+              >
+                <a href="{% url 'post_details' category_slug=post.category.slug post_slug=post.slug %}">{{post.title}}</a>
+              </h1>
+              <div
+                class="d-flex my-3 align-items-center text-secondary fw-bold"
+                style="font-size: 14px"
+              >
+                <span>{{post.author_name}}</span
+                >
+                <span class="mx-2">&#9679;</span>
+                <span>{{post.published_date|date}}</span>
+                <span class="mx-2">&#9679;</span>
+                <a href="{% url 'category' category_slug=post.category.slug %}" style="font-size: 14px">{{post.category}}</a>
+              </div>
+              <div class="articalContent">
+                {{post.post|slice:"125"|safe}}....
+              </div>
+              <a href="{% url 'post_details' category_slug=post.category.slug post_slug=post.slug %}" class="blog-btn">Read Blog</a>
+            </div>
+          {% endfor %}
+          <!-- block -->
+        </div>
+        <!-- pagination -->
+        <nav class="text-center mt-5">
+        {% if category_posts.has_other_pages %}
+          <ul class="pagination justify-content-center mb-0">
+            {% if category_posts.has_previous %}
+            <li class="page-item">
+              <a href="?page={{category_posts.previous_page_number}}" class="page-link">Previous</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+              <a href="#" class="page-link">Previous</a>
+            </li>
+            {% endif %}
+            {% for i in category_posts.paginator.page_range %}
+            {% if category_posts.number == i %}
+            <li class="page-item">
+              <a href="#" class="page-link active">{{i}}</a>
+            </li>
+            {% else %}
+            <li class="page-item">
+              <a href="?page={{i}}" class="page-link">{{i}}</a>
+            </li>
+            {% endif %}
+            {% endfor %}
+            {% if category_posts.has_next %}
+            <li class="page-item">
+              <a href="?page={{category_posts.next_page_number}}" class="page-link">Next</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+              <a href="#" class="page-link">Next</a>
+            </li>
+            {% endif %}
+          </ul>
+        {% endif %}
+        </nav>
+        <!-- pagination end -->
+      </div>
+      <!-- left part -->
+      <!-- right part -->
+      <div class="col-lg-4">
+        <div class="rightBlogBodyFeatureMain">
+          <div class="latestPostMain">
+            <div class="latestPostTitle">Latest Posts</div>
+            <!-- list -->
+            {% for post in latest_posts %}
+              {% if forloop.counter <= 3 %}
+                <div class="latestPostList">
+                  <div class="postImg">
+                    <img class="border" src="{{post.thumbnail.url}}" alt="{{post.thumbnail_alt_text}}" />
+                  </div>
+                  <div class="postInfo">
+                    <div class="postTile">
+                      <a href="{% url 'post_details' category_slug=post.category.slug post_slug=post.slug %}"
+                        >{{post.title}}</a
+                      >
+
+                      <div class="d-flex align-items-center">
+                        <span
+                          class="text-secondary fw-bold mt-1"
+                          style="font-size: 12px"
+                          >{{post.published_date|date}}</span
+                        >
+                        <span
+                          class="mx-2 text-secondary"
+                          style="font-size: 12px"
+                          >&#9679;</span
+                        >
+                        <a href="{% url 'category' category_slug=post.category.slug %}" style="font-size: 12px; font-weight: bold"
+                          >{{post.category}}</a
+                        >
+                      </div>
+                    </div>
+                    <div class="postContent">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Architecto, facere?...
+                    </div>
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+            <!-- list -->
+          </div>
+        </div>
+      </div>
+      <!-- right part -->
+    </div>
+  </div>
+</section>
+<!--blog body features  -->
+{% endblock content %}

@@ -1,0 +1,760 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock title %}
+{% load static %}
+{% block content %}
+    <!-- slider part start -->
+    <section class="main-slider">
+        <div class="slider-box">
+            <div class="slider-owl-carousel owl-carousel owl-theme owl-loaded ">
+                <div class="owl-stage-outer slider-owl-stage-outer">
+                    <div class="owl-stage  slider-owl-stage">
+                        {% for item in slider %}
+                        <!-- blocks -->
+                        <div class="owl-item slider-owl-item">
+                            <div class="slide">
+                                {% if item.slider_image %}
+                                <div class="slider-image-layer" style="background-image:url('{{item.slider_image.url}}')"></div>
+                                {% endif %}
+                                <div class="slider-pattern-layer"></div>
+                                <div class="container">
+                                    <!-- content column -->
+                                    <div class="slider-content">
+                                        <div class="slider-con-inner">
+                                            <div class="slider-title">{{item.title}}</div>
+                                            <h1 class="slider-heading">{{item.heading|safe}}
+                                            </h1>
+                                            <div class="slider-text">{{item.text|safe}}</div>
+                                            <!-- slider button -->
+                                            {% if item.hire_us_btn == True %}
+                                            <div class="slider-btn-box">
+                                                <a href="{% url "contact" %}" class="btn btn-outline-light btn-lg" style="--bs-btn-padding-x: 2rem;"><span>Hire Us</span></a>
+                                            </div>
+                                            {% else %}
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <!-- content column -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- blocks -->
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- slider part start -->
+
+    <!-- 1st service container -->
+    <!-- Featured One -->
+    <section class="featured-one">
+        <div class="container">
+            <div class="row clearfix">
+
+                <!-- Feature Block One -->
+                {% for service in services %}
+                {% if service.show_on_homepage == True %}
+                <div class="feature-block_one">
+                    <div class="feature-block_one-inner">
+                        <a class="overlay-link" href="{% url 'service_details' service.slug %}"></a>
+                        <span class="color-layer"></span>
+                        <span class="feature-block_one-icon">
+                            {% if service.icon_for_homepage %}
+                            <img src="{{service.icon_for_homepage.url}}" alt="" />
+                            {% endif %}
+                        </span>
+                        <h5 class="feature-block_one-title">{{service.service_name}}</h5>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+                <!-- Feature Block One -->
+
+            </div>
+        </div>
+    </section>
+    <!-- End Featured One -->
+    <!-- about one -->
+    <section class="about-one">
+        <div class="about-one-pattern-one"></div>
+        <div class="container">
+            <div class="row">
+                <div class="about-one-img-box col-md-6 col-lg-6 col-sm-12">
+                    <div class="about-one-pattern-two"></div>
+                    <div class="about-one-img">
+                        {% if index_page.about_section_image %}
+                        <img src="{{index_page.about_section_image.url}}" alt="{{index_page.about_section_image_alt_text}}">
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="about-one-con-box col-md-6 col-lg-6 col-sm-12">
+                    <div class="about-one-con">
+                        <div class="about-one-title">
+                            //About our company
+                        </div>
+                        <h1>{{index_page.about_section_heading|safe}}</h1>
+                        <p>{{index_page.about_section_text|safe}}</p>
+                    </div>
+                    <div class="about-one-block-tow">
+                        <div class="row">
+                            <div class="about-one-icon-box col-lg-6 col-md-6 col-sm-6">
+                                <div class="about-one-icon-box-inner">
+                                    <div class="about-one-icon">
+                                        <span class="about-one-icon-img">
+                                            <img src="{% static "images/about-1.png" %}">
+                                        </span>
+                                        <h6>Customer </br> Satisfaction</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="about-one-icon-box col-lg-6 col-md-6 col-sm-6">
+                                <div class="about-one-icon-box-inner">
+                                    <div class="about-one-icon">
+                                        <span class="about-one-icon-img">
+                                            <img src="{% static "images/about-2.png" %}">
+                                        </span>
+                                        <h6>Quality </br> Services</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- contact details -->
+
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="about-con-box">
+                                <a href="{% url "contact" %}" class="btn"><span>contact Us <i
+                                            class="fa-solid fa-arrow-right"></i></span></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="about-phone-box">
+                                <span class="about-phone-icon"><i class="fa-solid fa-phone"></i></span>
+                                <p>Call for help</p>
+                                <a class="about-phone-number" href="tel:{{website_details.phone_1}}">{{website_details.phone_1}}</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- contact details -->
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- about one end -->
+
+
+    <!-- service carousol part start -->
+    <section class="services-one">
+        <div class="services-one-bg"></div>
+        <div class="container">
+            <div class="serv-one-title">
+                <div class="serv-one-title-one">
+                    <p>~ Our awesome services ~</p>
+                    <h2 class="serv-one-title-two">{{index_page.services_section_heading|safe}}</h2>
+                </div>
+            </div>
+            <!-- services carousol -->
+            <div class="serv-one-inner-container">
+                <div class="serv-owl owl-carousel">
+
+                    <!-- block -->
+                    {% for service in services %}
+                    <div class="owl-carousel-box">
+                        <div class="owl-carousel-box-inner">
+                            <span class="serv-caro-icon">
+                                <img src="{% static 'images/service-8.png' %}" alt="">
+                            </span>
+                            <h5>{{service.service_name}}</h5>
+                            <p>{{service.service_description|safe}}</p>
+                            <div class="owl-carousel-box-overly">
+                                <div class="owl-carousel-box-overly-color-layer"></div>
+                                <span class="serv-caro-over-icon"><img src="{% static 'images/service-8-1.png' %}" alt="" /></span>
+                                <h5><a href="{% url 'service_details' service.slug %}">{{service.service_name}}</a></h5>
+                                <a class="over-ly-a" href="{% url 'service_details' service.slug %}">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <!-- block -->
+                    <!-- block -->
+                    {% for service in services %}
+                    {% if service.sub_menu == True %}
+                        {% for sub_service in sub_services %}
+                        <div class="owl-carousel-box">
+                            <div class="owl-carousel-box-inner">
+                                <span class="serv-caro-icon">
+                                    <img src="{% static 'images/service-8.png' %}" alt="">
+                                </span>
+                                <h5>{{sub_service.service_name}}</h5>
+                                <p>{{sub_service.service_description|safe}}</p>
+                                <div class="owl-carousel-box-overly">
+                                    <div class="owl-carousel-box-overly-color-layer"></div>
+                                    <span class="serv-caro-over-icon"><img src="{% static 'images/service-8-1.png' %}" alt="" /></span>
+                                    <h5><a href="{% url 'service_details' service.slug sub_service.slug %}">{{sub_service.service_name}}</a></h5>
+                                    <a class="over-ly-a" href="{% url 'service_details' service.slug sub_service.slug %}">Learn More</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                    {% endfor %}
+                    <!-- block -->
+                    <!-- block -->
+                    {% for service in services %}
+                    {% if service.sub_menu == True %}
+                        {% for sub_service in sub_services %}
+                            {% if sub_service.sub_menu == True %}
+                                {% for sub_sub_service in sub_sub_services %}
+                                <div class="owl-carousel-box">
+                                    <div class="owl-carousel-box-inner">
+                                        <span class="serv-caro-icon">
+                                            <img src="{% static 'images/service-8.png' %}" alt="">
+                                        </span>
+                                        <h5>{{sub_sub_service.service_name}}</h5>
+                                        <p>{{sub_sub_service.service_description|safe}}</p>
+                                        <div class="owl-carousel-box-overly">
+                                            <div class="owl-carousel-box-overly-color-layer"></div>
+                                            <span class="serv-caro-over-icon"><img src="{% static 'images/service-8-1.png' %}" alt="" /></span>
+                                            <h5><a href="{% url 'service_details' service.slug sub_service.slug sub_sub_service.slug %}">{{sub_sub_service.service_name}}</a></h5>
+                                            <a class="over-ly-a" href="{% url 'service_details' service.slug sub_service.slug sub_sub_service.slug %}">Learn More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    {% endfor %}
+                    <!-- block -->
+                </div>
+                <!-- services carousol -->
+            </div>
+    </section>
+
+    <!-- service carousol part end -->
+
+    <!-- feature one start -->
+    <section class="feature-one">
+        <div class="feature-one-bg"></div>
+        <div class="feat-pattern-layer-one"></div>
+        <div class="feat-pattern-layer-two"></div>
+        <div class="container">
+            <div class="row">
+                <div class="feat-one-img col-lg-6 col-md-6 col-sm-12">
+                    <div class="feature-one-img">
+                        <span class="feature-one-img-box">
+                            {% if index_page.features_section_image %}
+                            <img src="{{index_page.features_section_image.url}}" alt="{{index_page.features_section_image_alt_text}}">
+                            {% endif %}
+                        </span>
+                    </div>
+                </div>
+                <div class="feat-one-con col-lg-6 col-md-6 col-sm-12">
+                    <div class="feature-one-title">
+                        <h2 class="feature-one-h2">
+                          {{index_page.features_section_title}}
+                        </h2>
+                        <h5 class="feature-one-h5">
+                            {{index_page.features_section_heading|safe}}
+                        </h5>
+                    </div>
+                    <div class="feature-one-list">
+                        <div class="feature-one-list-box">
+                            <span class="feature-one-icon"><i class="fa-solid fa-circle-check"></i></span>
+                            <h5 class="feat-one-list-item">{{index_page.feature_bullet_1}}</h5>
+                        </div>
+                        <div class="feature-one-list-box">
+                            <span class="feature-one-icon"><i class="fa-solid fa-circle-check"></i></span>
+                            <h5 class="feat-one-list-item">{{index_page.feature_bullet_2}}</h5>
+                        </div>
+                        <div class="feature-one-list-box">
+                            <span class="feature-one-icon"><i class="fa-solid fa-circle-check"></i></span>
+                            <h5 class="feat-one-list-item">{{index_page.feature_bullet_3}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- feature one end -->
+
+    <!-- feature two start -->
+
+    <section class="feature-two">
+        <div class="container">
+            <div class="feat-two-title">
+                <p class="feat-two-title-one">//Our best Services</p>
+                <div class="feat-two-title-two">
+                    {{index_page.best_services_section_text|safe}}
+                </div>
+            </div>
+            <div class="row">
+                <!-- feature card  -->
+                <div class="col-md-4 col-lg-4 col-sm-6">
+                    <div class="feat-card">
+                        <div class="feat-card-head">
+                            <div class="feat-card-i"><i class="{{index_page.best_service_1_font_awesome_icon}}"></i></div>
+                            <div class="feat-card-round-border">
+                                <span class="feat-circle"></span>
+                            </div>
+                        </div>
+                        <div class="feat-card-body">
+                            <h3>{{index_page.best_service_1_heading}}</h3>
+                            <p>{{index_page.best_service_1_text}}</p>
+                            <a class="btn" href="{{index_page.best_service_1_page_link}}"><span>Read More</span></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- feature card  -->
+                <!-- feature card  -->
+                <div class="col-md-4 col-lg-4 col-sm-6">
+                    <div class="feat-card">
+                        <div class="feat-card-head">
+                            <div class="feat-card-i"><i class="{{index_page.best_service_2_font_awesome_icon}}"></i></div>
+                            <div class="feat-card-round-border">
+                                <span class="feat-circle"></span>
+                            </div>
+                        </div>
+                        <div class="feat-card-body">
+                            <h3>{{index_page.best_service_2_heading}}</h3>
+                            <p>{{index_page.best_service_2_text}}</p>
+                            <a class="btn" href="{{index_page.best_service_2_page_link}}"><span>Read More</span></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- feature card  -->
+                <!-- feature card  -->
+                <div class="col-md-4 col-lg-4 col-sm-6">
+                    <div class="feat-card">
+                        <div class="feat-card-head">
+                            <div class="feat-card-i"><i class="{{index_page.best_service_3_font_awesome_icon}}"></i></div>
+                            <div class="feat-card-round-border">
+                                <span class="feat-circle"></span>
+                            </div>
+                        </div>
+                        <div class="feat-card-body">
+                            <h3>{{index_page.best_service_3_heading}}</h3>
+                            <p>{{index_page.best_service_3_text}}</p>
+                            <a class="btn" href="{{index_page.best_service_3_page_link}}"><span>Read More</span></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- feature card  -->
+            </div>
+        </div>
+    </section>
+    <!-- feature two end -->
+
+
+    <!-- company part start -->
+    <section class="company-one">
+        <div class="company-one-bg"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <div class="company-one-box">
+                        <div class="company-one-tile">
+                            <h4 class="company-one-title-one">
+                                {{index_page.our_company_section_title}}
+                            </h4>
+                            <h2 class="company-one-title-two">
+                                {{index_page.our_company_section_heading|safe}}
+                            </h2>
+                        </div>
+                        <!-- company details part -->
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="company-one-details">
+                                    <p>{{index_page.our_company_section_text}}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="company-one-details-list">
+                                    <ul class="company-one-det-ul">
+                                        <li class="company-one-det-list"><i class="fa-solid fa-check-double"></i>{{index_page.our_company_bullet_1}}</li>
+                                        <li class="company-one-det-list"><i class="fa-solid fa-check-double"></i>{{index_page.our_company_bullet_2}}</li>
+                                        <li class="company-one-det-list"><i class="fa-solid fa-check-double"></i>{{index_page.our_company_bullet_3}}</li>
+                                        <li class="company-one-det-list"><i class="fa-solid fa-check-double"></i>{{index_page.our_company_bullet_4}}</li>
+                                        <li class="company-one-det-list"><i class="fa-solid fa-check-double"></i>{{index_page.our_company_bullet_5}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- company details part -->
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <div class="company-one-img">
+                        <span class="company-img-one">
+                            {% if index_page.our_company_section_image %}
+                            <img src="{{index_page.our_company_section_image.url}}" alt="{{index_page.our_company_section_image_alt_text}}">
+                            {% endif %}
+                        </span>
+                        <span class="company-img-two"><img src="{% static 'images/best-it.svg' %}" alt=""></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- company part end -->
+
+    <!-- company part two start -->
+    <section id="company-two">
+        <div class="container">
+            <div class="company-two-main">
+                <div class="company-two-main-title">
+                    <h2>{{index_page.counter_section_text}}</h2>
+                </div>
+                <div class="row">
+                    <div class="count-main-box col-md-3 col-lg-3 col-sm-3">
+                        <div class="count-heading">
+                            <div class="counter-box">
+                                <div class="count" max-data="{{index_page.counter_1_progress}}">0</div>
+                                <span><i class="fa-solid fa-plus"></i></span>
+                            </div>
+                            <h2 class="reaction">{{index_page.counter_1_title}}</h2>
+                        </div>
+                    </div>
+                    <div class="count-main-box col-md-3 col-lg-3 col-sm-3">
+                        <div class="count-heading">
+                            <div class="counter-box">
+                                <div class="count" max-data="{{index_page.counter_2_progress}}">0</div>
+                                <span><i class="fa-solid fa-plus"></i></span>
+                            </div>
+                            <h2 class="reaction">{{index_page.counter_2_title}}</h2>
+                        </div>
+                    </div>
+                    <div class="count-main-box col-md-3 col-lg-3 col-sm-3">
+                        <div class="count-heading">
+                            <div class="counter-box">
+                                <div class="count" max-data="{{index_page.counter_3_progress}}">0</div>
+                                <span><i class="fa-solid fa-plus"></i></span>
+                            </div>
+                            <h2 class="reaction">{{index_page.counter_3_title}}</h2>
+                        </div>
+                    </div>
+                    <div class="count-main-box col-md-3 col-lg-3 col-sm-3">
+                        <div class="count-heading">
+                            <div class="counter-box">
+                                <div class="count" max-data="{{index_page.counter_4_progress}}">0</div>
+                                <span><i class="fa-solid fa-plus"></i></span>
+                            </div>
+                            <h2 class="reaction">{{index_page.counter_4_title}}</h2>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- company part two end -->
+
+
+    <section class="skill-sect-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 col-sm-12 progress-img-main">
+                    <div class="progress-img-box">
+                        {% if index_page.our_skills_image %}
+                        <img src="{{index_page.our_skills_image.url}}" alt="{{index_page.our_skills_image_alt_text}}">
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-lg-6 col-sm-12 col-md-12 progress-main-box">
+                    <div id="skill-sect">
+                        <h2>//Our Skills</h2>
+                        <h1>{{index_page.our_skills_heading|safe}}</h1>
+                        <span class="skill-det">{{index_page.our_skills_text}}</span>
+
+                        {% if index_page.our_skill_1 %}
+                        <p>{{index_page.our_skill_1}}</p>
+                        <div class="progress">
+                            <div class="progress-bar" data-progress="{{index_page.our_skill_1_progress}}">
+                                <span>{{index_page.our_skill_1_progress}}%</span>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if index_page.our_skill_2 %}
+                        <p>{{index_page.our_skill_2}}</p>
+                        <div class="progress">
+                            <div class="progress-bar" data-progress="{{index_page.our_skill_2_progress}}">
+                                <span>{{index_page.our_skill_2_progress}}%</span>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if index_page.our_skill_3 %}
+                        <p>{{index_page.our_skill_3}}</p>
+                        <div class="progress">
+                            <div class="progress-bar" data-progress="{{index_page.our_skill_3_progress}}">
+                                <span>{{index_page.our_skill_3_progress}}%</span>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if index_page.our_skill_4 %}
+                        <p>{{index_page.our_skill_4}}</p>
+                        <div class="progress">
+                            <div class="progress-bar" data-progress="{{index_page.our_skill_4_progress}}">
+                                <span>{{index_page.our_skill_4_progress}}%</span>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if index_page.our_skill_5 %}
+                        <p>{{index_page.our_skill_5}}</p>
+                        <div class="progress">
+                            <div class="progress-bar" data-progress="{{index_page.our_skill_5_progress}}">
+                                <span>{{index_page.our_skill_5_progress}}%</span>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if index_page.our_skill_6 %}
+                        <p>{{index_page.our_skill_6}}</p>
+                        <div class="progress">
+                            <div class="progress-bar" data-progress="{{index_page.our_skill_6_progress}}">
+                                <span>{{index_page.our_skill_6_progress}}%</span>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if index_page.our_skill_7 %}
+                        <p>{{index_page.our_skill_7}}</p>
+                        <div class="progress">
+                            <div class="progress-bar" data-progress="{{index_page.our_skill_7_progress}}">
+                                <span>{{index_page.our_skill_7_progress}}%</span>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if index_page.our_skill_8 %}
+                        <p>{{index_page.our_skill_8}}</p>
+                        <div class="progress">
+                            <div class="progress-bar" data-progress="{{index_page.our_skill_8_progress}}">
+                                <span>{{index_page.our_skill_8_progress}}%</span>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if index_page.our_skill_9 %}
+                        <p>{{index_page.our_skill_9}}</p>
+                        <div class="progress">
+                            <div class="progress-bar" data-progress="{{index_page.our_skill_9_progress}}">
+                                <span>{{index_page.our_skill_9_progress}}%</span>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if index_page.our_skill_10 %}
+                        <p>{{index_page.our_skill_10}}</p>
+                        <div class="progress">
+                            <div class="progress-bar" data-progress="{{index_page.our_skill_10_progress}}">
+                                <span>{{index_page.our_skill_10_progress}}%</span>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- testimonial part start -->
+    <section class="testimonial">
+        <div class="test-pattern"></div>
+        <div class="test-bg"></div>
+        <div class="container">
+            <!-- title -->
+            <div class="test-title">
+                <h5 class="client-test"><span>//</span>Client Testimonials</h5>
+                <h2 class="client-test-two">What They’re <span>Talking?</span></h2>
+            </div>
+            <!-- title -->
+            <div class="test-one-main">
+                <!-- owl carousel -->
+                <div class="test-owl owl-carousel owl-theme owl-loaded">
+                    <!-- owl carousel -->
+                    <div class="owl-stage-outer test-owl-stage-outer">
+                        <div class="owl-stage test-owl-stage">
+                            {% for testimonial in testimonials %}
+                            <!-- test item block -->
+                            <div class="owl-item test-owl-item">
+                                <div class="testimonial-block">
+                                    <div class="test-inner-box">
+                                        <div class="test-rating">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <div class="test-text">“{{testimonial.testimonial|safe}}”
+                                        </div>
+                                    </div>
+                                    <div class="test-author-box">
+                                        <div class="test-a-box">
+                                            <span class="test-author-img"><img src="{{testimonial.photo.url}}" alt=""></span>
+                                            <h5>{{testimonial.name}}</h5>
+                                            <p class="designation">{{testimonial.designation}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            <!-- test item block -->
+                        </div>
+                    </div>
+                    <!-- owl carousel -->
+                </div>
+                <!-- owl carousel -->
+            </div>
+        </div>
+    </section>
+
+    <!-- testimonial part end -->
+
+    <!-- team part start -->
+    <section class="team-one" id="team">
+        <div class="team-one-bg"></div>
+        <div id="team_one_pattern" class="rellax" data-rellax-speed="4"
+            style="background-image:url({% static "images/pattern-17.png" %})"></div>
+        <div id="team_one_pattern-two" class="rellax" data-rellax-speed="4"
+            style="background-image:url({% static "images/pattern-24.png" %})"></div>
+        <div class="container">
+            <div class="team-tile-box">
+                <div class="team-title">Team Members</div>
+                <h2 class="team-heading">Passionate Personalities,</h2>
+                <h2 class="team-heading-color"><span>Versatile</span> Brains</h2>
+            </div>
+            <div class="row">
+
+                <!-- block start -->
+                <div class="col-md-12">
+                    <div class="team-main-box">
+                        <div class="team-one-carousel owl-carousel owl-theme owl-loaded">
+                            <div class="owl-stage-outer team-one-stage-outer">
+                                <div class="owl-stage team-one-stage">
+                                    <!-- block item start -->
+                                    {% for member in team %}
+                                    <div class="owl-item team-one-item">
+
+                                        <div class="team_one col-lg-3">
+                                            <div class="team_one-inner fadeInUp" data-wow-delay="0ms"
+                                                data-wow-duration="1500ms">
+                                                <div class="team_one-image">
+                                                    <img src="{{member.photo.url}}" alt="{{member.name}}" style="height: 400px; object-fit: cover;">
+                                                    <div class="team_one-content">
+                                                        <h5 class="team-one_title"><a href="{% url 'team_member' member.slug %}">{{member.name}}</a></h5>
+                                                        <div class="team-one_designation">{{member.designation}}</div>
+                                                    </div>
+                                                    <div class="team_one-overlay">
+                                                        <div class="team-one_overlay-content">
+                                                            <div class="team_one-text">{{member.short_bio}}</div>
+                                                            <a class="team_one-more" href="{% url 'team_member' member.slug %}">Read
+                                                                more</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- social-box -->
+                                                <ul class="team-one_social">
+                                                    <li><a href="{{member.facebook}}"><i
+                                                                class="fa-brands fa-facebook-f"></i></a></li>
+                                                    <li><a href="{{member.instagram}}"><i
+                                                                class="fa-brands fa-instagram"></i></a></li>
+                                                    <li><a href="{{member.linkedin}}"><i
+                                                                class="fa-brands fa-linkedin"></i></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    {% endfor %}
+                                    <!-- block item end -->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- block end -->
+
+            </div>
+        </div>
+    </section>
+
+    <!-- team part end -->
+
+    <!-- blog part start -->
+
+    <section class="blog" id="blog">
+        <div class="blog-title-box">
+            <div class="blog-title-one">//News & Blog</div>
+            <h2 class="blog-title-two">Explore Our Latest <span>Blog</span></h2>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- carousel part -->
+                    <div class="blog-main-box">
+                        <div class="blog-owl-caroisel owl-carousel owl-theme owl-loaded">
+                            <div class="owl-stage-outer blog-owl-stage-outer">
+                                <div class="owl-stage blog-owl-stage">
+                                    <!-- block start -->
+                                    {% for post in posts %}
+                                    {% if post.show_on_slider == True %}
+                                    <div class="owl-item blog-item">
+                                        <div class="blog-block">
+                                            <div class="blog-inner">
+                                                <div class="blog-img">
+                                                    <a href="{% url 'post_details' category_slug=post.category.slug post_slug=post.slug %}">
+                                                        <img src="{{post.thumbnail.url}}" alt="{{post.thumbnail_alt_text}}" style="height: 250px; object-fit: cover;">
+                                                    </a>
+                                                </div>
+                                                <div class="blog-content">
+                                                    <div class="blog-post-date">
+                                                        <div class="b-left"><i class="fa-solid fa-calendar-days"></i>
+                                                        </div>
+                                                        <div class="b-right">{{post.published_date|date}}</div>
+                                                    </div>
+                                                    <h5><a href="{% url 'post_details' category_slug=post.category.slug post_slug=post.slug %}">{{post.title}}</a></h5>
+                                                    <p class="b-text">{{post.post|slice:"80"|safe}}</p>
+                                                </div>
+                                                <div class="b-bottom-box">
+                                                    <div class="b-author">
+                                                        <span class="author-img"><img src="{% static 'images/news-icon.png' %}"
+                                                                alt=""></span>
+                                                        <div class="b-author-name">{{post.author_name}}</div>
+                                                    </div>
+                                                    <a href="{% url 'post_details' category_slug=post.category.slug post_slug=post.slug %}" class="b-details">More Details <span class="b-d-icon"><i
+                                                                class="fa-solid fa-arrow-right-long"></i></span></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                    {% endfor %}
+                                    <!-- block end -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- blog part end -->
+{% endblock content %}
+{% block page_js %} <script src="{% static 'js/index_counter.js' %}"></script> {% endblock page_js %}  

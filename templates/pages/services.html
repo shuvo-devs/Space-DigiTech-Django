@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% block title %}Our Services{% endblock title %}Our Services
+{% load static %}
+{% block content %}
+<!-- servicer-part-one -->
+<section class="service-one-part">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="service-one-title-box">
+          <h1 class="service-one-title">{{services_page.page_title}}</h1>
+          <div class="service-one-text">
+            <p>{{services_page.page_text|safe}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- servicer-part-one end -->
+<!-- service part two  -->
+<section class="service-part-two">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="service-two-title-box">
+          <div class="service-two-title">// Our Services</div>
+          <h1 class="service-two-heading">
+           {{services_page.section_heading|safe}}
+          </h1>
+          <div class="service-two-text">
+            {{services_page.section_text|safe}}
+          </div>
+        </div>
+        <div class="row">
+          <!-- block -->
+          {% for service in services %}
+          <div class="col-lg-4">
+            <div class="service-two-service-box">
+              <div class="service-two-top-box">
+                <div class="service-two-icon">
+                  <img src="{{service.icon_for_services_page.url}}" alt="" />
+                </div>
+                <span>{{service.sl_no}}</span>
+              </div>
+              <div class="service-two-info">
+                <h3 class="service-two-info-title">{{service.service_name}}</h3>
+                <p>
+                  {{service.service_description|safe}}
+                </p>
+                <div class="read-btn"><a href="{% url 'service_details' service.slug %}">Read more</a></div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          <!-- block -->
+          <!-- block -->
+          {% for service in services %}
+          {% if service.sub_menu == True %}
+            {% for sub_service in sub_services %}
+            <div class="col-lg-4">
+              <div class="service-two-service-box">
+                <div class="service-two-top-box">
+                  <div class="service-two-icon">
+                    <img src="{{sub_service.icon_for_services_page.url}}" alt="" />
+                  </div>
+                  <span>{{sub_service.sl_no}}</span>
+                </div>
+                <div class="service-two-info">
+                  <h3 class="service-two-info-title">{{sub_service.service_name}}</h3>
+                  <p>
+                    {{sub_service.service_description|safe}}
+                  </p>
+                  <div class="read-btn"><a href="{% url 'service_details' service.slug sub_service.slug %}">Read more</a></div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          {% endif %}
+          {% endfor %}
+          <!-- block -->
+          <!-- block -->
+          {% for service in services %}
+          {% if service.sub_menu == True %}
+            {% for sub_service in sub_services %}
+            {% if sub_service.sub_menu == True %}
+              {% for sub_sub_service in sub_sub_services %}
+              <div class="col-lg-4">
+                <div class="service-two-service-box">
+                  <div class="service-two-top-box">
+                    <div class="service-two-icon">
+                      <img src="{{sub_sub_service.icon_for_services_page.url}}" alt="" />
+                    </div>
+                      <span>{{sub_sub_service.sl_no}}</span>
+                  </div>
+                  <div class="service-two-info">
+                    <h3 class="service-two-info-title">{{sub_sub_service.service_name}}</h3>
+                    <p>
+                    {{sub_sub_service.service_description|safe}}
+                    </p>
+                    <div class="read-btn"><a href="{% url 'service_details' service.slug sub_service.slug sub_sub_service.slug %}">Read more</a></div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            {% endif %}
+            {% endfor %}
+          {% endif %}
+          {% endfor %}
+          <!-- block -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- service part two end -->
+{% endblock content %}

@@ -1,0 +1,317 @@
+    {% extends 'base.html' %}
+    {% block title %}{{team_member.name}}{% endblock title %}{{team_member.name}}
+    {% block content %}
+    <!--  team page first section-->
+    <!--  team page first section-->
+    <section class="team-first">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-12 col-lg-6">
+                    <div class="team-mem-info">
+                        <h3>Hello There ...</h3>
+                        <h1>{{team_member.name}}</h1>
+                        <h2>I Am A <span class="auto-type">{{team_member.designation}}</span></h2>
+                        <p>{{team_member.short_bio}}</p>
+                        <a href="{% url "contact" %}" class="team-btn">Contact Us</a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12 col-lg-6">
+                    <div class="team-mem-img">
+                        <div class="team-mem-image">
+                            <img src="{{team_member.photo.url}}" alt="{{team_member.name}}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--  team page first section-->
+    <!-- personal info section -->
+    <section class="team-info">
+        <div class="container">
+            <div class="row">
+                <!-- block -->
+                <div class="col-lg-12 col-sm-12 col-md-12">
+                    <div class="team-single-info">
+                        <div class="team-info-icons">
+                            {% if team_member.facebook %}
+                            <a href="{{team_member.facebook}}" class="team-info-icon active"><i class="fa-brands fa-facebook-f"></i></a>
+                            {% endif %}
+                            {% if team_member.twitter %}
+                            <a href="{{team_member.twitter}}" class="team-info-icon active"><i class="fa-brands fa-twitter"></i></a>
+                            {% endif %}
+                            {% if team_member.instagram %}
+                            <a href="{{team_member.instagram}}" class="team-info-icon active"><i class="fa-brands fa-instagram"></i></a>
+                            {% endif %}
+                            {% if team_member.youtube %}
+                            <a href="{{team_member.youtube}}" class="team-info-icon active"><i class="fa-brands fa-youtube"></i></a>
+                            {% endif %}
+                            {% if team_member.linkedin %}
+                            <a href="{{team_member.linkedin}}" class="team-info-icon active"><i class="fa-brands fa-linkedin-in"></i></a>
+                            {% endif %}
+                            {% if team_member.website %}
+                            <a href="{{team_member.website}}" class="team-info-icon active"><i class="fa-solid fa-globe"></i></a>
+                            {% endif %}
+                            {% if team_member.other_website_link %}
+                            <a href="{{team_member.other_website_link}}" class="team-info-icon active"><i class="{{team_member.other_website_font_awesome_icon}}"></i></a>
+                            {% endif %}
+                        </div>
+                        <div class="team-img-wrap">
+                            <div class="team-img"><img src="{{team_member.photo.url}}" alt="{{team_member.name}}"></div>
+                        </div>
+                        <div class="team-info-wrap">
+                            <h4 class="team-mem-title">{{team_member.name}}</h4>
+                            <div class="team-info-item team-department">
+                                <h4>Designation: </h4><span>{{team_member.designation}}</span>
+                            </div>
+                            <div class="team-info-item">
+                                <h4>Skills: </h4><span>
+                                    {% if team_member.skill_1 %}
+                                    {{team_member.skill_1}},
+                                    {% endif %}
+                                    {% if team_member.skill_2 %}
+                                    {{team_member.skill_2}},
+                                    {% endif %}
+                                    {% if team_member.skill_3 %}
+                                    {{team_member.skill_3}},
+                                    {% endif %}
+                                    {% if team_member.skill_4 %}
+                                    {{team_member.skill_4}},
+                                    {% endif %}
+                                    {% if team_member.skill_5 %}
+                                    {{team_member.skill_5}},
+                                    {% endif %}
+                                    {% if team_member.skill_6 %}
+                                    {{team_member.skill_6}},
+                                    {% endif %}
+                                    {% if team_member.skill_7 %}
+                                    {{team_member.skill_7}},
+                                    {% endif %}
+                                    {% if team_member.skill_8 %}
+                                    {{team_member.skill_8}},
+                                    {% endif %}
+                                    {% if team_member.skill_9 %}
+                                    {{team_member.skill_9}},
+                                    {% endif %}
+                                    {% if team_member.skill_10 %}
+                                    {{team_member.skill_10}}
+                                    {% endif %}
+                                </span>
+                            </div>
+                            <div class="team-info-item">
+                                <h4>Year of Experience: </h4><span>{{team_member.year_of_experience}}</span>
+                            </div>
+                            <div class="team-info-item">
+                                <h4>Email: </h4><span>{{team_member.email}}</span>
+                            </div>
+                            <div class="team-info-item">
+                                <h4>Phone: </h4><span>{{team_member.phone}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- block -->
+            </div>
+        </div>
+    </section>
+    <!-- personal info section -->
+    <!-- personal info part two section -->
+    <section class="team-personal-info">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="team-personal-info-box">
+                        <h4 class="team-personal-info-title">//personal information</h4>
+                        <div class="team-persona-info-text">
+                            {{team_member.about|safe}}
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- personal info part two section -->
+    <!-- personal skills -->
+    <!-- personal skills -->
+    <section class="skill-sect-main">
+        <div class="container">
+            <div class="row">
+                <!-- porgresss bars -->
+                <!-- porgresss bars -->
+                <div class="col-lg-6 col-sm-12 col-md-12 progress-main-box">
+                    <div id="skill-sect">
+                        <h2>//Skills</h2>
+                        {% if team_member.skill_1 %}
+                        <p>{{team_member.skill_1}}</p>
+                        <div class="progress">
+                            <div class="progress-bar" data-progress="{{team_member.skill_1_progress}}">
+                                <span>{{team_member.skill_1_progress}}%</span>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if team_member.skill_2 %}
+                        <p>{{team_member.skill_2}}</p>
+                        <div class="progress">
+                            <div class="progress-bar" data-progress="{{team_member.skill_2_progress}}">
+                                <span>{{team_member.skill_2_progress}}%</span>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if team_member.skill_3 %}
+                        <p>{{team_member.skill_3}}</p>
+                        <div class="progress">
+                            <div class="progress-bar" data-progress="{{team_member.skill_3_progress}}">
+                                <span>{{team_member.skill_3_progress}}%</span>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if team_member.skill_4 %}
+                        <p>{{team_member.skill_4}}</p>
+                        <div class="progress">
+                            <div class="progress-bar" data-progress="{{team_member.skill_4_progress}}">
+                                <span>{{team_member.skill_4_progress}}%</span>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if team_member.skill_5 %}
+                        <p>{{team_member.skill_5}}</p>
+                        <div class="progress">
+                            <div class="progress-bar" data-progress="{{team_member.skill_5_progress}}">
+                                <span>{{team_member.skill_5_progress}}%</span>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if team_member.skill_6 %}
+                        <p>{{team_member.skill_6}}</p>
+                        <div class="progress">
+                            <div class="progress-bar" data-progress="{{team_member.skill_6_progress}}">
+                                <span>{{team_member.skill_6_progress}}%</span>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if team_member.skill_7 %}
+                        <p>{{team_member.skill_7}}</p>
+                        <div class="progress">
+                            <div class="progress-bar" data-progress="{{team_member.skill_7_progress}}">
+                                <span>{{team_member.skill_7_progress}}%</span>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if team_member.skill_8 %}
+                        <p>{{team_member.skill_8}}</p>
+                        <div class="progress">
+                            <div class="progress-bar" data-progress="{{team_member.skill_8_progress}}">
+                                <span>{{team_member.skill_8_progress}}%</span>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if team_member.skill_9 %}
+                        <p>{{team_member.skill_9}}</p>
+                        <div class="progress">
+                            <div class="progress-bar" data-progress="{{team_member.skill_9_progress}}">
+                                <span>{{team_member.skill_9_progress}}%</span>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if team_member.skill_10 %}
+                        <p>{{team_member.skill_10}}</p>
+                        <div class="progress">
+                            <div class="progress-bar" data-progress="{{team_member.skill_10_progress}}">
+                                <span>{{team_member.skill_10_progress}}%</span>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <!-- porgresss bars -->
+                <!-- porgresss bars -->
+                <!-- experiense -->
+                <!-- experiense -->
+                <div class="col-lg-6 col-sm-12 col-md-12 team-skill-exp">
+                    <div class="team-skill-exp-main">
+                        <h2>//Experiences</h2>
+                        <div class="team-exp-info">
+                            <ul>
+                                {% if team_member.experience_1 %}
+                                  <li style="margin-bottom: 14px;">{{team_member.experience_1}}</li>
+                                {% endif %}
+                                {% if team_member.experience_2 %}
+                                  <li style="margin-bottom: 14px;">{{team_member.experience_2}}</li>
+                                {% endif %}
+                                {% if team_member.experience_3 %}
+                                  <li style="margin-bottom: 14px;">{{team_member.experience_3}}</li>
+                                {% endif %}
+                                {% if team_member.experience_4 %}
+                                  <li style="margin-bottom: 14px;">{{team_member.experience_4}}</li>
+                                {% endif %}
+                                {% if team_member.experience_5 %}
+                                  <li style="margin-bottom: 14px;">{{team_member.experience_5}}</li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- experiense -->
+                <!-- experiense -->
+            </div>
+    </section>
+
+    <!-- personal skills -->
+    <!-- personal skills -->
+    <section class="team-personal-con">
+        <div class="team-personal-con-bg"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3"></div>
+                <!-- gap -->
+                <!-- gap -->
+                <div class="form-column col-lg-6 col-md-12 col-md-12">
+                    <div class="inner-column">
+                        <h4 class="team-personal-con-title">//Contact with us</h4>
+                        <h2 class="team-personal-con-head">Feel Free to Contact with<br> Our IT Experts</h2>
+                        <!-- contact form -->
+                        <div class="form-container">
+                            <form method="POST"  action="{% url 'contact' %}">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-lg-6 form-group">
+                                        <label for="name">Name (required)</label>
+                                        <input type="text" id="name" name="name" placeholder="Your name" required>
+                                        <span class="errors"></span><br>
+                                    </div>
+                                    <div class="col-lg-6 form-group">
+                                        <label for="email">Email (required)</label>
+                                        <input type="email" placeholder="Email address" id="email" name="email" required>
+                                        <span class="errors"></span><br>
+                                    </div>
+                                    <div class="col-lg-6 form-group">
+                                        <label for="phone">Phone (required)</label>
+                                        <input type="text" placeholder="Phone number" id="phone" name="phone" required>
+                                        <span class="errors"></span><br>
+                                    </div>
+                                    <div class="col-lg-6 form-group">
+                                        <label>Subject (required)</label>
+                                        <input type="text" id="subeject" name="subject" placeholder="Subject" required>
+                                        <span class="errors"></span><br>
+                                    </div>
+                                    <div class="col-lg-12 form-group">
+                                        <label for="message">Message (required)</label>
+                                        <textarea placeholder="Your message" name="message" id="message" required></textarea>
+                                        <span class="errors"></span><br>
+                                    </div>
+
+                                    <div class="col-lg-12 form-group">
+                                        <input class="btn" type="submit" value="Send message">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- contact form -->
+                    </div>
+                </div>
+                <!-- gap -->
+                <!-- gap -->
+                <div class="col-lg-2"></div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

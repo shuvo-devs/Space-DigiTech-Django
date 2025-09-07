@@ -1,0 +1,121 @@
+{% extends 'base.html' %} {% block title %}About{% endblock title %} {% load
+static %} {% block content %}
+<!-- about 1st part -->
+<section class="about-first">
+  <div class="container">
+    <div class="row">
+      <div class="abour-first-img col-lg-6 col-md-6 col-sm-12">
+        <div class="about-icon-img">
+          {% if about_page.page_title_image %}
+          <img
+            src="{{about_page.page_title_image.url}}"
+            alt="{{about_page.page_title_image_alt_text}}"
+          />
+          {% endif %}
+        </div>
+      </div>
+      <div class="abour-first-title col-lg-6 col-md-6 col-sm-12">
+        <div class="about-main">
+          <h1 class="about-title">{{about_page.page_title}}</h1>
+          <div class="about-text">{{about_page.page_text}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- about 1st end -->
+<!-- about 2nd part -->
+<section class="about-one-part" id="about-counter">
+  <div class="container">
+    <div class="row">
+      <!-- left part -->
+      <div class="about-one-content col-lg-6 col-md-12 col-sm-12">
+        <div class="about-cont-inner">
+          <div class="about-one-sec-title">
+            <div class="about-us-title">//about us</div>
+            <h1 class="about-us-heading">
+              {{about_page.section_heading|safe}}
+            </h1>
+            <div class="about-us-text">{{about_page.section_text}}</div>
+          </div>
+          <!-- about tabs -->
+          <div class="about-info-tabs">
+            <div class="about-info-tab-box">
+              <button class="tab-btn active">Our Mission</button>
+              <button class="tab-btn">Our vision</button>
+              <button class="tab-btn">Our value</button>
+              <div class="line"></div>
+            </div>
+            <div class="tab-content-box">
+              <!-- block -->
+              <div class="tab-content active">
+                <h3>Our Mission</h3>
+                <p>{{about_page.our_mission|safe}}</p>
+              </div>
+              <!-- block -->
+              <!-- block -->
+              <div class="tab-content">
+                <h3>Our vision</h3>
+                <p>{{about_page.our_vision|safe}}</p>
+              </div>
+              <!-- block -->
+              <!-- block -->
+              <div class="tab-content">
+                <h3>Our value</h3>
+                <p>{{about_page.our_value|safe}}</p>
+              </div>
+              <!-- block -->
+            </div>
+          </div>
+          <!-- about tabs -->
+        </div>
+      </div>
+      <!-- left part -->
+      <!-- right part -->
+      <div class="about-one-img-column col-lg-6 col-md-12 col-sm-12">
+        <div class="about-one-img-inner">
+          <div class="about-circle-img">
+            <img src="{% static 'images/pattern-45.png' %}" alt="" />
+          </div>
+          <div class="about-one-right-img">
+            <!-- counter column  -->
+            <div class="about-one-counter-block">
+              <div class="layer-dots"></div>
+              <div class="about-counter-box">
+                {% if about_page.experience %}
+                <div class="count" max-data="{{about_page.experience}}">0</div>
+                {% else %}
+                <div class="count" max-data="0">0</div>
+                {% endif %}
+              </div>
+              <div class="counter-text">years of experiences</div>
+            </div>
+            <!-- counter column  -->
+            <div class="about-inner-img">
+              {% if about_page.section_image %}
+              <img
+                src="{{about_page.section_image.url}}"
+                alt="{{about_page.section_image_alt_text}}"
+              />
+              {% endif %}
+            </div>
+            <div class="about-one-award">
+              <div class="award-inner">
+                <div class="about-award-icon">
+                  <img src="{% static 'images/award.svg' %}" alt="" />
+                </div>
+                <h4>{{about_page.award_title}}</h4>
+                <p>{{about_page.award_description}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- right part -->
+    </div>
+  </div>
+</section>
+<!-- about 2nd end -->
+{% endblock content %} {% block page_js %}
+<script src="{% static 'js/about_counter.js' %}"></script>
+{% endblock page_js %}

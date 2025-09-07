@@ -1,0 +1,11 @@
+.brand-link .brand-image {
+  margin-top: 0;
+  box-shadow: none !important;
+}
+.main-sidebar .brand-text {
+  font-weight: bold !important;
+}
+.login-logo img,
+.register-logo img {
+  width: 350px;
+}

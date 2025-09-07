@@ -1,0 +1,70 @@
+<!--top bar -->
+<section id="topbar">
+  <div class="top-header-main">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-lg-12 col-sm-12">
+          <div class="top-bar-main">
+            <ul class="tp-bar-con">
+              <li class="tp-bar-con-list quick-cont">
+                <a href="{{website_details.skype}}"
+                  ><i class="fa-brands fa-skype"></i
+                ></a>
+              </li>
+              <li class="tp-bar-con-list quick-cont">
+                <a href="{{website_details.whatsapp}}"
+                  ><i class="fa-brands fa-whatsapp"></i
+                ></a>
+              </li>
+              <li class="tp-bar-con-list quick-cont-number">
+                <a href="tel:{{website_details.phone_1}}"
+                  ><i class="fa-solid fa-phone-flip"></i>{{website_details.phone_1}}</a
+                >
+              </li>
+              <li class="tp-bar-con-list">
+                <a href="mailto:{{website_details.email_1}}"
+                  ><i class="fa-solid fa-envelope"></i
+                  >{{website_details.email_1}}</a
+                >
+              </li>
+            </ul>
+            <!-- social icon -->
+            <ul class="tp-bar-social">
+              {% if website_details.facebook %}
+              <li class="tp-bar-con-social">
+                <a href="{{website_details.facebook}}"><i class="fa-brands fa-facebook-f"></i></a>
+              </li>
+              {% endif %}
+              {% if website_details.twitter %}
+              <li class="tp-bar-con-social">
+                <a href="{{website_details.twitter}}"><i class="fa-brands fa-twitter"></i></a>
+              </li>
+              {% endif %}
+              {% if website_details.instagram %}
+              <li class="tp-bar-con-social">
+                <a href="{{website_details.instagram}}"><i class="fa-brands fa-instagram"></i></a>
+              </li>
+              {% endif %}
+              {% if website_details.youtube %}
+              <li class="tp-bar-con-social">
+                <a href="{{website_details.youtube}}"><i class="fa-brands fa-youtube"></i></a>
+              </li>
+              {% endif %}
+              {% if website_details.pinterest %}
+              <li class="tp-bar-con-social">
+                <a href="{{website_details.pinterest}}"><i class="fa-brands fa-pinterest"></i></a>
+              </li>
+              {% endif %}
+              {% if website_details.linkedin %}
+              <li class="tp-bar-con-social">
+                <a href="{{website_details.linkedin}}"><i class="fa-brands fa-linkedin"></i></a>
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--top bar end -->

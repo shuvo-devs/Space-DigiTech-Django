@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% block title %}{{service_details.service_name}}{% endblock title %}service
+{% load static %}
+{% block content %}
+    <!-- servicer-part-one -->
+    <section class="services-all-part-one">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="service-one-title-box service-cat-title">
+                        <h1 class="service-one-title">{{service_details.service_name}}</h1>
+                        <div class="service-one-text">{{service_details.service_description|safe}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- servicer-part-one end -->
+    <!-- service part two  -->
+    <section class="service-all-part-two">
+        <div class="container">
+            <div class="row">
+                <div class="service-web-design-img col-lg-6 col-md-12 col-sm-12">
+                    <div class="service-all-part-left">
+                        <img src="{{service_details.service_image.url}}" alt="{{service_details.service_image_alt_text}}">
+                    </div>
+                </div>
+                <div class="service-web-design-con col-lg-6 col-md-12 col-sm-12">
+                    <div class="service-all-part-right">
+                        <div class="service-all-part-title-box">
+                            <div class="service-all-part-title">// About Our Service</div>
+                            <h2 class="service-all-part-heading">{{service_details.service_heading|safe}}</h2>
+                        </div>
+                        <!-- details -->
+                        <div class="row">
+                            <!-- block -->
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="service-all-details-box">
+                                    <span>01</span>
+                                    <div class="service-all-detail-title">{{service_details.service_point_1_heading}}</div>
+                                    <div class="service-all-detail-text">{{service_details.service_point_1_description}}</div>
+                                </div>
+                            </div>
+                            <!-- block -->
+                            <!-- block -->
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="service-all-details-box">
+                                    <span>02</span>
+                                    <div class="service-all-detail-title">{{service_details.service_point_2_heading}}</div>
+                                    <div class="service-all-detail-text">{{service_details.service_point_2_description}}</div>
+                                </div>
+                            </div>
+                            <!-- block -->
+                            <!-- block -->
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="service-all-details-box">
+                                    <span>03</span>
+                                    <div class="service-all-detail-title">{{service_details.service_point_3_heading}}</div>
+                                    <div class="service-all-detail-text">{{service_details.service_point_3_description}}</div>
+                                </div>
+                            </div>
+                            <!-- block -->
+                            <!-- block -->
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="service-all-details-box">
+                                    <span>04</span>
+                                    <div class="service-all-detail-title">{{service_details.service_point_4_heading}}</div>
+                                    <div class="service-all-detail-text">{{service_details.service_point_4_description}}</div>
+                                </div>
+                            </div>
+                            <!-- block -->
+                        </div>
+                        <!-- details -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- service part two end -->
+    <!-- service part advantage -->
+    <section class="service-advantage">
+        <div class="container">
+            <div class="row">
+                <!-- block -->
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <div class="service-advan-box">
+                        <div class="serv-adv-icon"><img src="{% static 'images/verify.svg' %}" alt=""></div>
+                        <div class="content-box">
+                            <h4>{{service_details.service_feature_1_heading}}</h4>
+                            <p>{{service_details.service_feature_1_sub_heading}}</p>
+                        </div>
+                        <span>01</span>
+                    </div>
+                </div>
+                <!-- block -->
+                <!-- block -->
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <div class="service-advan-box active">
+                        <div class="serv-adv-icon"><img src="{% static 'images/verify.svg' %}" alt=""></div>
+                        <div class="content-box">
+                            <h4>{{service_details.service_feature_2_heading}}</h4>
+                            <p>{{service_details.service_feature_2_sub_heading}}</p>
+                        </div>
+                        <span>02</span>
+                    </div>
+                </div>
+                <!-- block -->
+                <!-- block -->
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <div class="service-advan-box">
+                        <div class="serv-adv-icon"><img src="{% static 'images/verify.svg' %}" alt=""></div>
+                        <div class="content-box">
+                            <h4>{{service_details.service_feature_3_heading}}</h4>
+                            <p>{{service_details.service_feature_3_sub_heading}}</p>
+                        </div>
+                        <span>03</span>
+                    </div>
+                </div>
+                <!-- block -->
+            </div>
+        </div>
+    </section>
+    <!-- service part advantage end -->
+{% endblock content %}

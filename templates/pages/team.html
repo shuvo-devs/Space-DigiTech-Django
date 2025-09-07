@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block title %}Team{% endblock title %}Team
+{% load static %}
+{% block content %}
+    <!--  team page first section-->
+    <section class="service-one-part">
+    <div class="container">
+        <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="service-one-title-box">
+            <h1 class="service-one-title">{{team_page.page_title}}</h1>
+            <div class="service-one-text">
+                <p>{{team_page.page_text|safe}}</p>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    </section>
+    <!--  team page first section-->
+    <!--  team page first section-->
+
+    <!-- team list section -->
+    <!-- team list section -->
+    <section class="team-list">
+        <div class="container">
+            <div class="row">
+                <!-- block -->
+                {% for member in team %}
+                <div class="team-list-col col-lg-4">
+                    <div class="team_one-inner fadeInUp">
+                        <div class="team_one-image">
+                            <img src="{{member.photo.url}}" alt="{{member.name}}">
+                            <div class="team_one-content">
+                                <h5 class="team-one_title"><a href="{% url 'team_member' member.slug %}">{{member.name}}</a></h5>
+                                <div class="team-one_designation">{{member.designation}}</div>
+                            </div>
+                            <div class="team_one-overlay">
+                                <div class="team-one_overlay-content">
+                                    <div class="team_one-text">{{member.short_bio}}</div>
+                                    <a class="team_one-more" href="{% url 'team_member' member.slug %}">Read
+                                        more</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- social-box -->
+                        <ul class="team-one_social">
+                            <li><a href="{{member.facebook}}"><i
+                                class="fa-brands fa-facebook-f"></i></a></li>
+                            <li><a href="{{member.instagram}}"><i
+                                class="fa-brands fa-instagram"></i></a></li>
+                            <li><a href="{{member.linkedin}}"><i
+                                class="fa-brands fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                {% endfor %}
+                <!-- block -->
+            </div>
+        </div>
+    </section>
+    <!-- team list section -->
+    <!-- team list section -->
+    <!-- pagination part -->
+    <!-- pagination part -->
+    {% comment %} <section class="team-pagination">
+        <div class="container">
+            <div class="row">
+                <div class="pagination-col col-lg-12">
+                    <div class="pagination">
+                        <button class="btn1" onclick="backBtn()"><span><i
+                                    class="fa-solid fa-arrow-left-long"></i></span> prev</button>
+                        <ul>
+                            <li class="page-link active" value="1" onclick="activeLink()"><a href="team.html">1</a></li>
+                            <li class="page-link" value="2" onclick="activeLink()"><a href="team-2.html">2</a></li>
+                            <li class="page-link" value="3" onclick="activeLink()">3</li>
+                            <li class="page-link" value="4" onclick="activeLink()">4</li>
+                        </ul>
+                        <button class="btn2" onclick="nextBtn()">next<span><i
+                                    class="fa-solid fa-arrow-right-long"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> {% endcomment %}
+    <!-- pagination part -->
+{% endblock content %}
